@@ -1,5 +1,7 @@
 package PageObjectModel;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +31,12 @@ public class SignupPage2 {
 	
 	@FindBy(xpath = "//button[text()='Yes']")
 	WebElement verifyYes;
+	
+	//@FindBy(name="xxxxx")
+	//WebElement img;
+	
+	//@FindBy(tagName="a")
+	//List<WebElement> links;
 	
 	SignupPage2(WebDriver d){
 		driver = d;
@@ -63,13 +71,10 @@ public class SignupPage2 {
 		verifyYes.click();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	//public boolean checkLogo() {
+			//boolean status = img.isDisplayed();
+			//return status;
+		//}
+		
 
 }

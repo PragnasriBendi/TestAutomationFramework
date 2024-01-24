@@ -1,34 +1,57 @@
 package PageObjectModel;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SignupTest {
+	
+	WebDriver driver;
+	
+	@BeforeClass
+	public void setup() {
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+		driver.get("https://sit.vriti.ai/");
+	}
+	
+	
+	
+	/*
+	 * @Test public void testLogo() { SignupPage spage = new SignupPage(driver);
+	 * Assert.assertEquals(spage.checkLogo(), true); }
+	 */
+	
 
 	@Test
 	public void verifyCandSignup() throws InterruptedException {
-		ChromeOptions ChromeOpt = new ChromeOptions();
-		WebDriverManager.chromedriver();
-		WebDriver driver = new ChromeDriver(ChromeOpt);
-
-		driver.manage().window().maximize();
 		
-		SignupPage2 spage = new SignupPage2(driver);
-		driver.get("https://sit.vriti.ai/");
+		SignupPage spage = new SignupPage(driver);
 		
 		spage.clickSignupLink();
-		Thread.sleep(3000);
 		spage.giveFirstName("Lucky");
-		spage.giveEmailId("lucky04@yopmail.com");
+		spage.giveEmailId("lucky08@yopmail.com");
 		spage.givePassword("Pragna@123");
 		spage.givecnfPassword("Pragna@123");
-		
 		spage.submitButton();
-		Thread.sleep(3000);
 		spage.verifyEmailYes();
+		Assert.assertEquals(driver.getTitle(), "Verify Email");
 	}
+	
+	@AfterClass
+	public void tearDown() {
+		driver.close();
+	}
+	
+	
 }

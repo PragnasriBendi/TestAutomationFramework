@@ -15,6 +15,9 @@ public class SignupPage {
 	By confirmPassword = By.name("userConfirmPassword");
 	By button = By.id("signUp");
 	By verifyYes = By.xpath("//button[text()='Yes']");
+	By title = By.xpath("//h3[text()='Verify Email']");
+	
+	//By img = By.xpath("xxxxx");   to validate the presence of logo
 
 	SignupPage(WebDriver d) {
 		driver = d;
@@ -49,5 +52,15 @@ public class SignupPage {
 		driver.findElement(verifyYes).click();
 
 	}
+	
+	public void verifyTitle() {
+		driver.findElement(title).isDisplayed();
+	}
+	
+	//public boolean checkLogo() {
+		//boolean status = driver.findElement(img).isDisplayed();
+		//return status;
+	//}
+	
 
 }
